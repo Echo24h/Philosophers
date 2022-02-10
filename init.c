@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/10 04:16:45 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/10 04:19:26 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_data(char **argv, t_data *data)
 	i = 0;
 	while (argv[++i])
 		if (!ft_strisdigit(argv[i]) || ft_atoi(argv[i]) <= 0)
-			return (EXIT_FAILURE);
+			return (write(1, "ERROR: init.c -> init_data()"));
 	data->nb_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);

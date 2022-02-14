@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/10 04:08:34 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/12 16:18:06 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@
 #	include <semaphore.h>
 #	include <sys/time.h>
 
-# define STATE_EAT 	0
-# define STATE_SLEEP 1
-# define STATE_FORK 	2
+# define STATE_EAT		0
+# define STATE_SLEEP	1
+# define STATE_FORK		2
 # define STATE_THINK	3
-# define STATE_DIED 	4
-# define STATE_OVER 	5
+# define STATE_DIED		4
+# define STATE_OVER		5
 
 typedef struct s_philo
 {

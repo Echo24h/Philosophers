@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/10 04:20:03 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/14 15:32:57 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	init(char **argv, t_data *data)
 		return (EXIT_FAILURE);
 	data->philos = malloc(sizeof(t_philo) * data->nb_philo);
 	i = data->nb_philo;
-	while (--i)
+	while (--i >= 0)
 		init_philo(&data->philos[i]);
 	return (EXIT_SUCCESS);
 }

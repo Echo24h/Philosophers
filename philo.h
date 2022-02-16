@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/12 16:18:06 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/16 02:33:41 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@
 
 typedef struct s_philo
 {
-	char		state;
-	pthread_t	thread;
+	char			state;
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
 }	t_philo;
 
 typedef struct	s_data

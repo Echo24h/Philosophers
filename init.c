@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/14 15:32:57 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/16 02:38:28 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	init_data(char **argv, t_data *data)
 
 void	init_philo(t_philo *philo)
 {
+	pthread_mutex_init(&philo->mutex, NULL);
 	philo->state = STATE_THINK;
 }
 

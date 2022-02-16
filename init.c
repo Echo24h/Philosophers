@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/16 02:38:28 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/16 21:47:17 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	init_data(char **argv, t_data *data)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->nb_eat = ft_atoi(argv[5]);
+	pthread_mutex_init(&data->end, NULL);
 	return (EXIT_SUCCESS);
 }
 
-void	init_philo(t_philo *philo)
+void	init_philo(t_philo *philo, t_data *data)
 {
-	pthread_mutex_init(&philo->mutex, NULL);
+	pthread_mutex_init(&philo->forks, NULL);
+	philo->data = data;
 	philo->state = STATE_THINK;
 }
 
@@ -42,6 +44,6 @@ int	init(char **argv, t_data *data)
 	data->philos = malloc(sizeof(t_philo) * data->nb_philo);
 	i = data->nb_philo;
 	while (--i >= 0)
-		init_philo(&data->philos[i]);
+		init_philo(&data->philos[i], data);
 	return (EXIT_SUCCESS);
 }

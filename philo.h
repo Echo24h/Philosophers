@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/02/16 02:33:41 by gborne           ###   ########.fr       */
+/*   Updated: 2022/02/16 21:48:24 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,28 @@
 # define STATE_FORK		2
 # define STATE_THINK	3
 # define STATE_DIED		4
-# define STATE_OVER		5
+# define STATE_END		5
 
 typedef struct s_philo
 {
 	char			state;
 	pthread_t		thread;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	forks;
+	int				nb_eat;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct	s_data
 {
-	int	nb_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	nb_eat;
-	t_philo	*philos;
+	pthread_mutex_t	end;
+	int				nb_philo;
+	int				nb_philo_end;
+	useconds_t		time_to_die;
+	useconds_t		time_to_eat;
+	useconds_t		time_to_sleep;
+	int				nb_eat;
+	t_philo			*philos;
+	char			died;
 }	t_data;
 
 // utils.c

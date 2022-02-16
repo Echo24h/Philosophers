@@ -6,7 +6,7 @@
 #    By: gborne <gborne@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 03:22:08 by gborne            #+#    #+#              #
-#    Updated: 2022/02/10 03:51:24 by gborne           ###   ########.fr        #
+#    Updated: 2022/02/16 19:08:46 by gborne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,6 @@ fclean:			clean
 re:				fclean $(NAME)
 
 test:			all
-				@./philo "5" "5" "5" "5" "5"
+				@./philo "5" "500000" "500000" "500000" "5000"
 
 .PHONY:			all clean fclean re

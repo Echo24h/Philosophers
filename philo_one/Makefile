@@ -6,7 +6,7 @@
 #    By: gborne <gborne@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 03:22:08 by gborne            #+#    #+#              #
-#    Updated: 2022/04/18 17:46:03 by gborne           ###   ########.fr        #
+#    Updated: 2022/05/01 23:41:54 by gborne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ ifeq ($(UNAME), Linux)
 	LEAKS = valgrind --leak-check=full --track-fds=yes --trace-children=yes -s -q
 endif
 
-SRCS			= main.c utils.c init.c
+SRCS			= main.c utils.c init.c routine.c
 OBJS			= $(SRCS:.c=.o)
 
 CC				= gcc

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:13:28 by gborne            #+#    #+#             */
-/*   Updated: 2022/04/20 20:59:23 by gborne           ###   ########.fr       */
+/*   Updated: 2022/05/02 00:31:37 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_strisdigit(char *str)
 	i = -1;
 	while (str[++i])
 		if (str[i] < '0' || str[i] > '9')
-			return (FALSE);
-	return (TRUE);
+			return (0);
+	return (1);
 }
 
 void	ft_putnbr(unsigned long long n)
@@ -42,8 +42,8 @@ void	ft_putnbr(unsigned long long n)
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (TRUE);
-	return (FALSE);
+		return (1);
+	return (0);
 }
 
 int	ft_atoi(const char *str)
@@ -101,7 +101,7 @@ void	msg(t_data *data, int id, char *text, unsigned long long time)
 
 void	ft_error(char *error_msg)
 {
-	int len;
+	int	len;
 
 	while (error_msg[len++])
 		;

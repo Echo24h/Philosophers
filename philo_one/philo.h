@@ -6,28 +6,20 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/04/20 20:59:20 by gborne           ###   ########.fr       */
+/*   Updated: 2022/05/02 00:19:29 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-#	define PHILO_H
+# define PHILO_H
 
-#	ifndef TRUE
-#		define TRUE 1
-#	endif
-
-#	ifndef FALSE
-#		define FALSE 0
-#	endif
-
-#	include <unistd.h>
-#	include <stdlib.h>
-#	include <stdio.h>
-#	include <string.h>
-#	include <pthread.h>
-#	include <semaphore.h>
-#	include <sys/time.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <pthread.h>
+# include <semaphore.h>
+# include <sys/time.h>
 
 // State of thread
 # define STATE_EAT		0
@@ -51,7 +43,7 @@ typedef struct s_philo
 	unsigned long long	time;
 }	t_philo;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int				nb_philo;
 	int				nb_eat;
@@ -61,7 +53,6 @@ typedef struct	s_data
 	t_philo			*philos;
 	int				philos_end;
 	pthread_mutex_t	write;
-	pthread_mutex_t	end;
 }	t_data;
 
 // ---------- utils.c ----------
@@ -69,7 +60,8 @@ int					ft_strisdigit(char *str);
 int					ft_isdigit(int c);
 unsigned long long	gettime(void);
 // Print text and use mutex
-void				msg(t_data *data, int id, char *text, unsigned long long time);
+void				msg(t_data *data, int id, char *text,
+						unsigned long long time);
 
 // Convert string number to int
 int					ft_atoi(const char *str);
@@ -80,5 +72,7 @@ void				ft_error(char *error_msg);
 // Init data and philosophers
 int					init(char **argv, t_data *data);
 
-#endif
+// Routine of philosophers
+void				*routine(void *p_philo);
 
+#endif

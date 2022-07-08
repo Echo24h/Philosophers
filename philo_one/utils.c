@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:13:28 by gborne            #+#    #+#             */
-/*   Updated: 2022/05/02 00:31:37 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/08 17:33:00 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void	msg(t_data *data, int id, char *text, unsigned long long time)
 {
 	pthread_mutex_lock(&data->write);
 	ft_putnbr(time / 1000);
-	write(1, " ", 2);
+	write(1, " ", 1);
 	ft_putnbr(id + 1);
-	write(1, " ", 2);
+	write(1, " ", 1);
 	write(1, text, ft_strlen(text));
-	write(1, "\n", 2);
+	write(1, "\n", 1);
 	pthread_mutex_unlock(&data->write);
 }
 
@@ -103,8 +103,9 @@ void	ft_error(char *error_msg)
 {
 	int	len;
 
+	len = 0;
 	while (error_msg[len++])
 		;
-	write(1, error_msg, len + 1);
+	write(1, error_msg, len);
 	exit(0);
 }

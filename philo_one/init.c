@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/05/02 00:28:28 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/08 17:33:51 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	init_data(char **argv, t_data *data)
 	i = 0;
 	while (argv[++i])
 		if (!ft_strisdigit(argv[i]) || ft_atoi(argv[i]) <= 0)
-			ft_error("ERROR: init.c -> init_data()\n");
+			ft_error("Error\nWrong arguments\n");
 	data->nb_philo = ft_atoi(argv[1]);
 	data->philos_end = 0;
 	data->time_die = ft_atoi(argv[2]);

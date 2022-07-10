@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:23:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/08 17:34:17 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/10 04:34:01 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	start_thread(t_data *data)
 
 	i = -1;
 	while (++i < data->nb_philo)
+	{
 		if (pthread_create(&data->philos[i].thread, NULL, &routine, (void*)&data->philos[i]) != 0 )
 			ft_error("Error\nCan't create thread.\n");
+		else
+			usleep(100);
+	}
 }
 
 int	monitoring(t_data *data)

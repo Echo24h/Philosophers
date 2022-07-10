@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:13:28 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/08 17:33:00 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/10 04:14:12 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static unsigned long	ft_strlen(const char *s)
 void	msg(t_data *data, int id, char *text, unsigned long long time)
 {
 	pthread_mutex_lock(&data->write);
-	ft_putnbr(time / 1000);
+	ft_putnbr(time);
 	write(1, " ", 1);
 	ft_putnbr(id + 1);
 	write(1, " ", 1);

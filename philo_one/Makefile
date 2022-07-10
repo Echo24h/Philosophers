@@ -6,7 +6,7 @@
 #    By: gborne <gborne@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 03:22:08 by gborne            #+#    #+#              #
-#    Updated: 2022/05/01 23:41:54 by gborne           ###   ########.fr        #
+#    Updated: 2022/07/10 04:38:08 by gborne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ NAME			= philo_one
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				gcc ${CFLAGS} -o ${NAME} ${OBJS} ${PTHREAD}
+				gcc -g -fsanitize=address ${CFLAGS} -o ${NAME} ${OBJS} ${PTHREAD}
 
 run: all
 	@$(LEAKS)./$(NAME)

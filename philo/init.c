@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 03:22:44 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/14 12:16:08 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 13:36:59 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	init_data(int argc, char **argv, t_data *data, unsigned long long sta
 
 static void	init_philo(t_philo *philo, t_data *data, int id)
 {
-	pthread_mutex_init(&philo->forks, NULL);
+	pthread_mutex_init(&philo->fork, NULL);
+	pthread_mutex_init(&philo->eat, NULL);
 	philo->nb_eat = 0;
 	philo->data = data;
 	philo->state = STATE_THINK;

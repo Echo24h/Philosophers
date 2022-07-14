@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:23:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/14 12:49:55 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 14:32:07 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@ static void	start_thread(t_data *data)
 static int	end(t_data *data)
 {
 	int	i;
-
-	pthread_mutex_lock(&data->write);
+	
 	i = 0;
 	while (i <= data->nb_philo)
 	{
-		pthread_mutex_destroy(&data->philos[i].forks);
+		pthread_mutex_destroy(&data->philos[i].fork);
+		pthread_mutex_destroy(&data->philos[i].eat);
 		i++;
 	}
-	pthread_mutex_unlock(&data->write);
-	pthread_mutex_destroy(&data->write);
 	free(data->philos);
 	return (0);
 }
@@ -46,22 +44,30 @@ static int	end(t_data *data)
 static int	run(t_data *data)
 {
 	int					i;
-	unsigned long long	time;
 
 	i = -1;
-	time = gettime();
 	while (++i < data->nb_philo)
 	{
-		if (data->philos[i].time + data->time_die < time)
+		pthread_mutex_lock(&data->philos[i].eat);
+		if (data->philos[i].time + data->time_die < gettime()
+		&& (data->philos[i].state != STATE_END))
 		{
+			pthread_mutex_lock(&data->write);
 			end(data);
-			msg(data, i, "died", time - data->starttime);
+			pthread_mutex_unlock(&data->write);
+			usleep(3000);
+			msg(data, i, "died", gettime() - data->starttime - 3);
+			pthread_mutex_destroy(&data->write);
 			return (0);
 		}
+		pthread_mutex_unlock(&data->philos[i].eat);
 	}
 	if (data->philos_end == data->nb_philo)
 	{
+		pthread_mutex_lock(&data->write);
 		end(data);
+		pthread_mutex_unlock(&data->write);
+		pthread_mutex_destroy(&data->write);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/14 12:33:56 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 13:36:30 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct s_philo
 	int					nb_eat;
 	struct s_data		*data;
 	pthread_t			thread;
-	pthread_mutex_t		forks;
+	pthread_mutex_t		fork;
+	pthread_mutex_t		eat;
 	unsigned long long	time;
 }	t_philo;
 

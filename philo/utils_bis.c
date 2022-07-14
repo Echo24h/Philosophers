@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:40:45 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/11 13:43:06 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 12:42:25 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,18 @@ static unsigned long	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_usleep( unsigned long long time, unsigned long long starttime)
+void	ft_usleep(size_t wait_time)
 {
-	usleep(0.95 * time);
-	while (gettime() < starttime + time)
-		usleep(1);
+	struct timeval	tv;
+	long			end;
+
+	gettimeofday(&tv, NULL);
+	end = (tv.tv_sec * 1000 + tv.tv_usec / 1000) + wait_time;
+	while (tv.tv_sec * 1000 + tv.tv_usec / 1000 <= end)
+	{
+		gettimeofday(&tv, NULL);
+		usleep(777);
+	}
 }
 
 void	msg(t_data *data, int id, char *text, unsigned long long time)

@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 09:05:27 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/11 13:44:12 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 12:33:56 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int				nb_philo;
-	int				nb_eat;
-	unsigned int	time_die;
-	unsigned int	time_eat;
-	unsigned int	time_sleep;
-	t_philo			*philos;
-	int				philos_end;
+	int					nb_philo;
+	int					nb_eat;
+	unsigned int		time_die;
+	unsigned int		time_eat;
+	unsigned int		time_sleep;
+	t_philo				*philos;
+	int					philos_end;
+	unsigned long long	starttime;
 	pthread_mutex_t	write;
 }	t_data;
 
@@ -64,8 +65,7 @@ void				ft_putnbr(unsigned long long n);
 unsigned long long	gettime(void);
 
 // usleep with max precision
-void				ft_usleep( unsigned long long time,
-						unsigned long long starttime);
+void				ft_usleep(size_t wait_time);
 // Print text and use mutex
 void				msg(t_data *data, int id, char *text,
 						unsigned long long time);
@@ -77,7 +77,7 @@ int					ft_atoi(const char *str);
 void				ft_error(char *error_msg);
 
 // Init data and philosophers
-int					init(int argc, char **argv, t_data *data);
+int					init(int argc, char **argv, t_data *data, unsigned long long starttime);
 
 // Routine of philosophers
 void				*routine(void *p_philo);

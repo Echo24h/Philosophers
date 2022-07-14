@@ -6,7 +6,7 @@
 /*   By: gborne <gborne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:23:16 by gborne            #+#    #+#             */
-/*   Updated: 2022/07/11 13:36:02 by gborne           ###   ########.fr       */
+/*   Updated: 2022/07/14 12:49:55 by gborne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static void	start_thread(t_data *data)
 		if (pthread_create(&data->philos[i].thread, NULL,
 				&routine, (void*)&data->philos[i]) != 0)
 			ft_error("Error\nCan't create thread.\n");
-		else
-			usleep(100);
+		usleep(100);
 	}
 }
 
@@ -44,7 +43,7 @@ static int	end(t_data *data)
 	return (0);
 }
 
-static int	run(t_data *data, unsigned long long starttime)
+static int	run(t_data *data)
 {
 	int					i;
 	unsigned long long	time;
@@ -53,10 +52,10 @@ static int	run(t_data *data, unsigned long long starttime)
 	time = gettime();
 	while (++i < data->nb_philo)
 	{
-		if (data->philos->time + data->time_die < time)
+		if (data->philos[i].time + data->time_die < time)
 		{
 			end(data);
-			msg(data, i, "died", time - starttime);
+			msg(data, i, "died", time - data->starttime);
 			return (0);
 		}
 	}
@@ -74,10 +73,10 @@ int	main(int argc, char **argv)
 	unsigned long long	starttime;
 
 	starttime = gettime();
-	if ((argc != 5 && argc != 6) || init(argc, argv, &data))
+	if ((argc != 5 && argc != 6) || init(argc, argv, &data, starttime))
 		return (write(1, "Error\nWrong arguments\n", 23));
 	start_thread(&data);
-	while (run(&data, starttime) == 1)
+	while (run(&data) == 1)
 		;
 	return (0);
 }
